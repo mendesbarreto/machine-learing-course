@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7547e4fb-08ec-4490-be92-adbf3c78015f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/introdution-to-python.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/R_User_Library.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../introdution/python-language/HelloWorld.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../introdution/python-language/Hello.py" beforeDir="false" afterPath="$PROJECT_DIR$/../introdution/python-language/Hello.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../introdution/r-language/methods/create_method.R" beforeDir="false" afterPath="$PROJECT_DIR$/../introdution/r-language/methods/create_method.R" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../introdution/r-language/methods/create_method_hello_user.R" beforeDir="false" afterPath="$PROJECT_DIR$/../introdution/r-language/methods/create_method_hello_user.R" afterDir="false" />
-    </list>
+    <list default="true" id="7547e4fb-08ec-4490-be92-adbf3c78015f" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,12 +135,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1555267162411</updated>
-      <workItem from="1555267177009" duration="2409000" />
+      <workItem from="1555267177009" duration="2603000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2409000" />
+    <option name="totallyTimeSpent" value="2603000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
