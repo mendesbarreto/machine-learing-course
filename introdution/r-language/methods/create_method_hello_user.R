@@ -116,5 +116,3 @@ is_prime_number <- function(number) {
 }
 
 print(is_prime_number(5))
-
-
