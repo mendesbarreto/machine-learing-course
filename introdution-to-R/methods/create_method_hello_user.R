@@ -27,3 +27,20 @@ print_hello_user_string_interpolation <- function(name) {
 print_hello_user("Douglas")
 print_hello_user_string_interpolation("Douglas Mendes Interpolation")
 
+
+mutiply <- function(value_left, value_right) {
+  value_left_number <- as.numeric(value_right)
+  value_right_number <- as.numeric(value_left)
+  
+  return(value_left_number * value_right_number)
+}
+
+mutiply(2,3)
+
+
+
+
+
+
+
+
