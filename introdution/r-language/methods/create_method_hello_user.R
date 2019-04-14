@@ -1,4 +1,4 @@
-# Title     : Mtethods
+# Title     : Methods
 # Objective : Create methods in R
 # Created by: mendesbarreto
 # Created on: 2019-04-07
