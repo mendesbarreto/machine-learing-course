@@ -1,20 +1,37 @@
-import pandas
+import pandas as panda
 import numpy.random as random
 import numpy
+from pandas.core.generic import NDFrame
+
+from dataset_cleaner import DataSetCleaner
 import matplotlib.pyplot as pyplot
 
-PI = numpy.pi
+from sklearn.datasets import load_boston
 
-NUMBER = 50
+report = open("report.txt", "w");
 
-x = random.rand(NUMBER)
-y = random.rand(NUMBER)
+# Loading data set from science kit bosto
+dataset = load_boston()
 
-colors = random.rand(NUMBER)
+# Creating data frame to work with it
+data_frame: NDFrame = panda.DataFrame(dataset.data, columns=dataset.feature_names)
+data_frame['target'] = dataset.target
 
-area = PI * (15 * random.rand(NUMBER))**2
-pyplot.scatter(x, y, s=area, c=colors, alpha=0.5)
-pyplot.show()
+# Clean the data
+data_frame_cleaner = DataSetCleaner()
+data_frame = data_frame_cleaner.remove_empty_values(data_frame)
+
+data_frame_correlation = data_frame.corr(method='pearson')
+data_frame_correlation = data_frame_cleaner.remove_last_column(data_frame_correlation)
+
+
+
+
+print(dataset.target)
+
+
+
+
 
 
 
