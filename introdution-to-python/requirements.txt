@@ -1,3 +1,5 @@
+tzlocal
+rpy2
 scikit-learn
 matplotlib
 seaborn
