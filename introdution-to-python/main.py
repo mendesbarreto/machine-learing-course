@@ -26,8 +26,6 @@ print(top_rating_movies_data_frame)
 grouped_ratings_average_data_frame = panda.DataFrame(grouped_ratings_average)
 grouped_ratings_average_data_frame['count'] = panda.DataFrame(grouped_ratings.count())
 
-head = grouped_ratings_average_data_frame.head()
-
 plot.figure(figsize=(10,4))
 grouped_ratings_average_data_frame['count'].hist(bins=70)
 plot.show()
@@ -42,7 +40,31 @@ searborn.jointplot(x='rating',
                    alpha=0.5)
 plot.show()
 
+movie_mat = data_frame.pivot_table(index='user_id', columns='title', values='rating')
+print(grouped_ratings_average_data_frame.sort_values('count', ascending=False).head(10))
+
+star_wars_user_rating = movie_mat['Star Wars (1977)']
+lier_lier_user_rating = movie_mat['Liar Liar (1997)']
+
+print(star_wars_user_rating.head())
+
+movies_like_star_wars = movie_mat.corrwith(star_wars_user_rating)
+movies_like_lier_lier = movie_mat.corrwith(lier_lier_user_rating)
+
+corr_starwars = panda.DataFrame(movies_like_star_wars, columns=['Correlation'])
+corr_starwars.dropna(inplace=True)
+print(corr_starwars.sort_values('Correlation', ascending=False).head(10))
+
+corr_lier_lier = panda.DataFrame(movies_like_lier_lier, columns=['Correlation'])
+corr_lier_lier.dropna(inplace=True)
+corr_lier_lier = corr_lier_lier.join(grouped_ratings_average_data_frame['count'])
+
+print(corr_lier_lier[corr_lier_lier['count'] > 100].sort_values('Correlation', ascending=False).head(10))
+
 print("end of program")
+
+
+
 
 
 
