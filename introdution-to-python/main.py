@@ -1,75 +1,45 @@
-import numpy as numpy
+import string
+import sys
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import pandas as panda
-import matplotlib.pyplot as plot
-import seaborn as searborn
-import os
+import matplotlib.pyplot as pyplot
+import codecs
+sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
 
-dir_name = os.path.dirname(__file__)
+import tweepy
+import json
+from tweepy import OAuthHandler
 
-column_names = ['user_id', 'item_id', 'rating', 'timestamp']
-rating_data_frame = panda.read_csv(dir_name + "/data/u.data",
-                                   sep='\t',
-                                   names=column_names)
-rating_head_data_frame = rating_data_frame.head()
+# Twitter API credentials
+twitter_api_key = "jS4ZNZKbBPlVUAYTlbZrEx5Lr"
+twitter_api_secret = "G98oZVWT22zDMEUZuffU1vyslZQVERFAmMI6JzuGA0kM4FMd7I"
+twitter_access_key = "34996225-yp0x65k8rYBqa1l9W6fJzPNBA7kN0127Q6s1ggU5b"
+twitter_access_secret = "arBdYztpaUcp2szrYEdC4eKdyyJfaH6lUhQUrMwBXlVyc"
 
-movie_titles_data_frame = panda.read_csv(dir_name + "/data/Movie_Id_Titles")
-movie_titles_data_frame_head = movie_titles_data_frame.head()
-data_frame = panda.merge(rating_data_frame, movie_titles_data_frame, on='item_id')
+twitter_auth = OAuthHandler(twitter_api_key, twitter_api_secret)
+twitter_auth.set_access_token(twitter_access_key, twitter_access_secret)
 
-searborn.set_style('white')
+twitter_api = tweepy.API(twitter_auth)
 
-grouped_ratings = data_frame.groupby('title')['rating']
-grouped_ratings_average = grouped_ratings.mean()
-top_rating_movies_data_frame = grouped_ratings_average.sort_values(ascending=False).head()
-print(top_rating_movies_data_frame)
+tweet_texts = []
+tweet_ids = []
 
-grouped_ratings_average_data_frame = panda.DataFrame(grouped_ratings_average)
-grouped_ratings_average_data_frame['count'] = panda.DataFrame(grouped_ratings.count())
+tweet_timeline_message = tweepy.Cursor(twitter_api.user_timeline).items(100)
 
-plot.figure(figsize=(10,4))
-grouped_ratings_average_data_frame['count'].hist(bins=70)
-plot.show()
+for tweet in tweet_timeline_message:
+    text = tweet.text#str(tweet.text.encode("utf-8"))
+    id = tweet.id
+    tweet_texts.append(text)
+    tweet_ids.append(id)
 
-plot.figure(figsize=(10,4))
-grouped_ratings_average_data_frame['rating'].hist(bins=70)
-plot.show()
+tweet_data_set = {'Id': tweet_ids, 'Text': tweet_texts}
+tweet_data_frame = panda.DataFrame(tweet_data_set)
 
-searborn.jointplot(x='rating',
-                   y='count',
-                   data=grouped_ratings_average_data_frame,
-                   alpha=0.5)
-plot.show()
+sentimentAnalyzer = SentimentIntensityAnalyzer()
 
-movie_mat = data_frame.pivot_table(index='user_id', columns='title', values='rating')
-print(grouped_ratings_average_data_frame.sort_values('count', ascending=False).head(10))
-
-star_wars_user_rating = movie_mat['Star Wars (1977)']
-lier_lier_user_rating = movie_mat['Liar Liar (1997)']
-
-print(star_wars_user_rating.head())
-
-movies_like_star_wars = movie_mat.corrwith(star_wars_user_rating)
-movies_like_lier_lier = movie_mat.corrwith(lier_lier_user_rating)
-
-corr_starwars = panda.DataFrame(movies_like_star_wars, columns=['Correlation'])
-corr_starwars.dropna(inplace=True)
-print(corr_starwars.sort_values('Correlation', ascending=False).head(10))
-
-corr_lier_lier = panda.DataFrame(movies_like_lier_lier, columns=['Correlation'])
-corr_lier_lier.dropna(inplace=True)
-corr_lier_lier = corr_lier_lier.join(grouped_ratings_average_data_frame['count'])
-
-print(corr_lier_lier[corr_lier_lier['count'] > 100].sort_values('Correlation', ascending=False).head(10))
-
-print("end of program")
+scores = []
 
 
+print(print("{:-<40} {}".format("I am very happy today", str(score))))
 
-
-
-
-
-
-
-
-
+print("USER")
